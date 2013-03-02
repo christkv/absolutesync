@@ -1,0 +1,23 @@
+{
+  "name": "absolutesync",
+  "version": "0.0.1",
+  "description": "Absolute Sync makes any asynchronous method synchronous and blocking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/christkv/absolutesync.git"
+  },
+  "keywords": [
+    "sync",
+    "blocking",
+    "asynchronous",
+    "synchronounus"
+  ],
+  "author": "Christian Kvalheim",
+  "license": "Apache 2.0",
+  "readmeFilename": "README.md",
+  "gitHead": "ce7eadd7411d4598e5918471db020352452fcb47"
+}
