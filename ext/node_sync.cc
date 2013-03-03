@@ -100,6 +100,7 @@ Handle<Value> Sync::Execute(const Arguments &args) {
 
   // Total number of additional function parameters
   const int length = args.Length() - 2;
+  int max_ticks = 1000;
 
   // Allocate the length of the argument
   Handle<Value> *_args = new Handle<Value>[length];
@@ -114,12 +115,21 @@ Handle<Value> Sync::Execute(const Arguments &args) {
 
   // Call function
   // function->Call(v8::Context::GetCurrent()->Global(), length + 1, _args);
-  function->Call(args[1]->ToObject(), length + 1, _args);
+  Local<Value> returnValue = function->Call(args[1]->ToObject(), length + 1, _args);
+  if(!returnValue->IsUndefined()) {
+    return scope.Close(returnValue);
+  }
+
   // Retrieve the return value
   js_result = global->Get(String::New("return_value"));
 
   // While we have not result let event loop run a step at a time
   while(js_result->IsNull()) {
+    max_ticks = max_ticks - 1;
+    if(max_ticks <= 0) {
+      return scope.Close(js_result);
+    }
+
     // Run event loop for a tick
     uv_run_once(uv_default_loop());    
     // Check for return value

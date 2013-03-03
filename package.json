@@ -10,6 +10,13 @@
     "type": "git",
     "url": "git://github.com/christkv/absolutesync.git"
   },
+  "dependencies": {
+    "esprima": "1.0.2"
+  },
+  "devDependencies": {
+    "nodeunit": "latest",
+    "mongodb": "latest"
+  },
   "keywords": [
     "sync",
     "blocking",
